@@ -56,6 +56,9 @@ var movieData = [
     },
    
 ]
+localStorage.setItem('movieKey', JSON.stringify(movieData));
+
+var movieDetail = JSON.parse(localStorage.getItem('movieKey'));
 
 var box = document.createElement('div');
 var image = document.createElement('img');
@@ -74,7 +77,21 @@ setInterval(()=>{
     }
 }, 2000)
 
-
+movieDetail.forEach(el => {
+    var div = document.createElement('div');
+    var imageDiv = document.createElement('div');
+    var url = document.createElement('img');
+    url.src = el.image_URL;
+    var name = document.createElement('h1');
+    name.innerText = `Film : ${el.name}`;
+    var date = document.createElement('p');
+    date.innerText = `Release Date : ${el.date}`;
+    var rating = document.createElement('p');
+    rating.innerText = `Rating : ${el.Rating}` 
+    imageDiv.append(url);
+    div.append(imageDiv, name, date, rating);
+    document.querySelector("#movies").append(div);
+});
 
 
 
